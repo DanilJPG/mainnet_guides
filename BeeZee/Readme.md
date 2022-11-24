@@ -5,18 +5,17 @@
 
 Steps | Comments
 --- | --- |
-[Upgrade]() | Check the version, if necessary update to the appropriate height blocks
-[installing utilities]() | server setup
-[Installing GO]() | Go language is necessary to work with a binary file and unpack it
-[Copying a repository]() | Cloning the GitHub repository of a project
-[Initializing]() | To generate configuration files
-[Download genesis]() | The genesis stores the state of the chain
-[Fixing the configure]() | Making changes to config.toml
-[Prunning app.toml]() | To save memory usage
-[Service file]() | Creating a service file
-[Launch]() | Start node 
-[Wallet]() | Creating and restoring a wallet
-[Validator]() | Creating your node operator
+[Upgrade](https://github.com/DanilJPG/mainnet_guides/blob/main/BeeZee/Readme.md#:~:text=Upgrade%20and%20install%20dependencies) | Check the version, if necessary update to the appropriate height blocks
+[installing utilities](https://github.com/DanilJPG/mainnet_guides/blob/main/BeeZee/Readme.md#:~:text=Upgrade%20and%20install%20dependencies) | server setup
+[Installing GO](https://github.com/DanilJPG/mainnet_guides/blob/main/BeeZee/Readme.md#:~:text=liblz4%2Dtool%20%2Dy-,Installing%20Go,-ver%3D%221.19.1%22%0Acd) | Go language is necessary to work with a binary file and unpack it
+[Copying a repository](https://github.com/DanilJPG/mainnet_guides/blob/main/BeeZee/Readme.md#:~:text=Cloning%20a%20repository) | Cloning the GitHub repository of a project
+[Initializing](https://github.com/DanilJPG/mainnet_guides/blob/main/BeeZee/Readme.md#:~:text=v5.1.1%0Amake%20install-,Initializing,-bzed%20init%20%3Cname_moniker) | To generate configuration files
+[Download genesis](https://github.com/DanilJPG/mainnet_guides/blob/main/BeeZee/Readme.md#:~:text=id%20beezee%2D1-,Download%20genesis,-wget%20%2Do%20%24HOME) | The genesis stores the state of the chain
+[Fixing the configure](https://github.com/DanilJPG/mainnet_guides/blob/main/BeeZee/Readme.md#:~:text=Correct%20the%20configuration%20file) | Making changes to config.toml
+[Prunning app.toml](https://github.com/DanilJPG/mainnet_guides/blob/main/BeeZee/Readme.md#:~:text=config/config.toml-,Prinning,-pruning%3D%22custom%22%20%26%26%20%5C%0Apruning_keep_recent) | To save memory usage
+[Service file](https://github.com/DanilJPG/mainnet_guides/blob/main/BeeZee/Readme.md#:~:text=Create%20a%20service%20file) | Creating a service file
+[Wallet](https://github.com/DanilJPG/mainnet_guides/blob/main/BeeZee/Readme.md#:~:text=t%20%5C%0A%2D%2Dfees%205000ubze-,Wallet,-%23%20%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D1%88%D0%B5%D0%BB%D0%B5%D0%BA%0Abzed) | Creating and restoring a wallet
+[Validator](https://github.com/DanilJPG/mainnet_guides/blob/main/BeeZee/Readme.md#:~:text=Creating%20a%20validator) | Creating your node operator
 [Useful commands]() | Here are commands for the validator, for node management and for the wallet
 [State Sunc]() | Chain synchronization
 
