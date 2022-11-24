@@ -12,7 +12,6 @@ Steps | Comments
 [Initializing](https://github.com/DanilJPG/mainnet_guides/blob/main/BeeZee/Readme.md#:~:text=v5.1.1%0Amake%20install-,Initializing,-bzed%20init%20%3Cname_moniker) | To generate configuration files
 [Download genesis](https://github.com/DanilJPG/mainnet_guides/blob/main/BeeZee/Readme.md#:~:text=id%20beezee%2D1-,Download%20genesis,-wget%20%2Do%20%24HOME) | The genesis stores the state of the chain
 [Fixing the configure](https://github.com/DanilJPG/mainnet_guides/blob/main/BeeZee/Readme.md#:~:text=Correct%20the%20configuration%20file) | Making changes to config.toml
-[Prunning app.toml](https://github.com/DanilJPG/mainnet_guides/tree/main/BeeZee#:~:text=config/config.toml-,Prinning,-pruning%3D%22custom%22%20%26%26%20%5C%0Apruning_keep_recent) | To save memory usage
 [Service file](https://github.com/DanilJPG/mainnet_guides/blob/main/BeeZee/Readme.md#:~:text=Create%20a%20service%20file) | Creating a service file
 [Wallet](https://github.com/DanilJPG/mainnet_guides/blob/main/BeeZee/Readme.md#:~:text=t%20%5C%0A%2D%2Dfees%205000ubze-,Wallet,-%23%20%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D1%88%D0%B5%D0%BB%D0%B5%D0%BA%0Abzed) | Creating and restoring a wallet
 [Validator](https://github.com/DanilJPG/mainnet_guides/blob/main/BeeZee/Readme.md#:~:text=Creating%20a%20validator) | Creating your node operator
