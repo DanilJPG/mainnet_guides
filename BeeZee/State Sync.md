@@ -1,3 +1,4 @@
+```
 sudo systemctl stop bzed
 
 cp $HOME/.bze/data/priv_validator_state.json $HOME/.bze/priv_validator_state.json.backup
@@ -23,3 +24,4 @@ mv $HOME/.bze/priv_validator_state.json.backup $HOME/.bze/data/priv_validator_st
 
 sudo systemctl restart bzed
 sudo journalctl -u bzed -f --no-hostname -o cat
+```
