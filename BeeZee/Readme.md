@@ -51,51 +51,48 @@ bzed config chain-id beezee-1
 
 #### Download genesis
 ```
-wget -O /root/.lambdavm/config//genesis.json "https://raw.githubusercontent.com/LambdaIM/mainnet/main/lambda_92000-1/genesis.json"
-#check
-
-`sha256sum genesis.json`
-# 1ff02001539bc1e9828fe170006f055c04df280c61c4ca9ecc9e7b6a272b7777  genesis.json
+wget -o $HOME/.bze/config/genesis.json https://raw.githubusercontent.com/bze-alphateam/bze/main/genesis.json
 ```
 
 #### Correct the configuration file
 ```
+sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.001ubze\"/;" ~/.bze/config/app.toml
+
 external_address=$(wget -qO- eth0.me)
-sed -i.bak -e "s/^external_address *=.*/external_address = \"$external_address:26656\"/" /root/.lambdavm/config/config.toml
+sed -i.bak -e "s/^external_address *=.*/external_address = \"$external_address:26656\"/" $HOME/.bze/config/config.toml
 
-sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.025ulamb\"/;" /root/.lambdavm/config/app.toml
+peers="6385d5fb198e3a793498019bb8917973325e5eb7@51.15.228.169:26656,ce25088267cef31f3be1ec03263524764c5c80bb@163.172.130.162:26656,2624d40b8861415e004d4532bb7d8d90dd0e6e66@51.15.115.192:26656,f238198a75e886a21cd0522b6b06aa019b9e182e@51.15.55.142:26656"
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.bze/config/config.toml
 
-PEERS=`curl -sL https://raw.githubusercontent.com/LambdaIM/mainnet/main/lambda_92000-1/peers.txt | sort -R | head -n 10 | awk '{print $1}' | paste -s -d, -`
-
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" ~/.lambdavm/config/config.toml
-
-SEEDS=`curl -sL https://raw.githubusercontent.com/LambdaIM/mainnet/main/lambda_92000-1/seeds.txt | awk '{print $1}' | paste -s -d, -`
-sed -i.bak -e "s/^seeds =.*/seeds = \"$SEEDS\"/" ~/.lambdavm/config/config.toml
+seeds="6385d5fb198e3a793498019bb8917973325e5eb7@51.15.138.216:26656"
+sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.bze/config/config.toml
 ```
 #### Prinning
 ```
 pruning="custom" && \
 pruning_keep_recent="100" && \
 pruning_keep_every="0" && \
-pruning_interval="50" && \
-sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.lambdavm/config/app.toml && \
-sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.lambdavm/config/app.toml && \
-sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.lambdavm/config/app.toml && \
-sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.lambdavm/config/app.toml
+pruning_interval="10" && \
+sed -i -e "s/^pruning *=.*/pruning = \"$pruning\"/" $HOME/.bze/config/app.toml && \
+sed -i -e "s/^pruning-keep-recent *=.*/pruning-keep-recent = \"$pruning_keep_recent\"/" $HOME/.bze/config/app.toml && \
+sed -i -e "s/^pruning-keep-every *=.*/pruning-keep-every = \"$pruning_keep_every\"/" $HOME/.bze/config/app.toml && \
+sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $HOME/.bze/config/app.toml
 ```
 
 #### Create a service file
 ```
-sudo tee /etc/systemd/system/lambdavm.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/bzed.service > /dev/null <<EOF
 [Unit]
-Description=lambdavm
+Description=bzed
 After=network-online.target
+
 [Service]
 User=$USER
-ExecStart=$(which lambdavm) start
+ExecStart=$(which bzed) start
 Restart=on-failure
 RestartSec=3
 LimitNOFILE=65535
+
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -103,48 +100,44 @@ EOF
 
 #### Launch
 ```
-systemctl daemon-reload && \
-systemctl enable lambdavm && \
-systemctl restart lambdavm && journalctl -u lambdavm -f -o cat
+systemctl daemon-reload
+systemctl enable bzed
+systemctl restart bzed && journalctl -u bzed -f -o cat
 ```
 
 #### Creating a validator 
 ```
-lambdavm tx staking create-validator \
---amount 1000000000000000000ulamb \
---pubkey $(lambdavm tendermint show-validator) \
---moniker "garfield" \
---chain-id lambda_92000-1 \
---commission-rate "0.05" \
+bzed tx staking create-validator \
+--chain-id beezee-1 \
+--commission-rate 0.05 \
+--commission-max-rate 0.2 \
+--commission-max-change-rate 0.1 \
 --min-self-delegation "1000000" \
---commission-max-rate "0.20" \
---commission-max-change-rate "0.01" \
---from garfield_wallet \
---gas=auto \
---fees 5000ulamb
+--amount 1000000ubze \
+--pubkey $(bzed tendermint show-validator) \
+--moniker "<name_moniker>" \
+--identity "0393473F5F0C6667" \
+--details "Delegate and eat lasagna" \
+--from <name_wallet>t \
+--fees 5000ubze
 ```
 #### Wallet 
 ```
-# create a wallet
-empowerd keys add $WALLET --keyring-backend os
+# создать кошелек
+bzed keys add <name_wallet> --keyring-backend os
 
-# restore the wallet (after the command insert seed)
-empowerd keys add $WALLET --recover --keyring-backend os
-
-# export to metamask(view private key)
-lambdavm keys unsafe-export-eth-key garfield_wallet
-
-# export wallet from metamask
-lambdavm keys unsafe-import-eth-key [account name] [private key]
+# восстановить кошелек (после команды вставить seed)
+bzed keys add <name_wallet> --recover --keyring-backend os
 ```
 
 #### Deleting
 ```
-systemctl stop lambdavm && \
-systemctl disable lambdavm && \
-rm /etc/systemd/system/lambdavm.service && \
-systemctl daemon-reload && \
+sudo systemctl stop bzed && \
+sudo systemctl disable bzed && \
+rm /etc/systemd/system/bzed.service && \
+sudo systemctl daemon-reload && \
 cd $HOME && \
-rm -rf .lambdavm lambdavm && \
-rm -rf $(which lambdavm)
+rm -rf .bze && \
+rm -rf bze && \
+rm -rf $(which bzed)
 ```
