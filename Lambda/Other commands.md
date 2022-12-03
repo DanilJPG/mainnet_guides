@@ -36,8 +36,11 @@ lambdavm tx staking unbond <addr_valoper> 1000000ulamb --from <name_wallet> --fe
 # send coins to another address
 lambdavm tx bank send <name_wallet> <address> 1000000ulamb --fees 5000umpwr -y
 ```
-#### BINARY tx staking edit-validator \
- ``` 
+
+#### Edit validator
+```
+lambdavm tx staking edit-validator \
+  
   --chain-id "CHAIN_NAME" \
   --moniker "MONIKER" \
   --identity "IDENTITY" \
