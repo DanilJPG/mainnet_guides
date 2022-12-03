@@ -126,10 +126,10 @@ lambdavm tx staking create-validator \
 #### Wallet 
 ```
 # create a wallet
-empowerd keys add $WALLET --keyring-backend os
+lambdavm keys add $WALLET --keyring-backend os
 
 # restore the wallet (after the command insert seed)
-empowerd keys add $WALLET --recover --keyring-backend os
+lambdavm keys add $WALLET --recover --keyring-backend os
 
 # export to metamask(view private key)
 lambdavm keys unsafe-export-eth-key garfield_wallet
