@@ -15,7 +15,7 @@ bzed q bank balances <address>
 # check the validator's pubkey
 bzed tendermint show-validator
 ```
-#### For validator
+####  Полезные команды для валидатора и делегатора
 ```Bash
 # collect revards from all validators who were delegated (no commission)
 bzed tx distribution withdraw-all-rewards --from <name_wallet> --fees 5000ubze -y
@@ -46,6 +46,7 @@ bzed q gov proposals --voter <ADDRESS>
 # vote for the proposal 
 bzed tx gov vote 1 yes --from <name_wallet> --fees 555ubze
 ```
+
 #### Delete
 ```Bash
 systemctl stop bzed && \
@@ -56,6 +57,7 @@ cd $HOME && \
 rm -rf .bze bzed && \
 rm -rf $(which bzed)
 ```
+
 #### Edit validator 
 ```Bash
 BINARY tx staking edit-validator \
