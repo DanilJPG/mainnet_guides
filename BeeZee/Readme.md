@@ -13,12 +13,12 @@ Steps | Comments
 
 ### 1.Подготовка сервера - Server Preparation 
 #### Обновление и установка зависимостей - Upgrade and install dependencies
-```
+```Bash
 sudo apt update && sudo apt upgrade -y && \
 sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bsdmainutils git make ncdu gcc git jq chrony liblz4-tool -y
 ```
 #### Installing Go
-```
+```Bash
 ver="1.19.1"
 cd $HOME
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz"
@@ -29,7 +29,7 @@ rm "go$ver.linux-amd64.tar.gz"
 
 ### 2.Работа с бинарным файлом и настройка - Working with a binary file and setting up
 #### Cloning a repository 
-```
+```Bash
 git clone https://github.com/bze-alphateam/bze
 cd bze
 git checkout v5.1.1
@@ -37,18 +37,18 @@ make install
 ```
 
 #### Initializing 
-```
+```Bash
 bzed init <name_moniker> --chain-id beezee-1
 bzed config chain-id beezee-1
 ```
 
 #### Download genesis
-```
+```Bash
 wget -o $HOME/.bze/config/genesis.json https://raw.githubusercontent.com/bze-alphateam/bze/main/genesis.json
 ```
 
 #### Correct the configuration file
-```
+```Bash
 sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.001ubze\"/;" ~/.bze/config/app.toml
 
 external_address=$(wget -qO- eth0.me)
@@ -61,7 +61,7 @@ seeds="6385d5fb198e3a793498019bb8917973325e5eb7@51.15.138.216:26656"
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.bze/config/config.toml
 ```
 #### Prinning
-```
+```Bash
 pruning="custom" && \
 pruning_keep_recent="100" && \
 pruning_keep_every="0" && \
@@ -73,7 +73,7 @@ sed -i -e "s/^pruning-interval *=.*/pruning-interval = \"$pruning_interval\"/" $
 ```
 
 #### Create a service file
-```
+```Bash
 sudo tee /etc/systemd/system/bzed.service > /dev/null <<EOF
 [Unit]
 Description=bzed
@@ -92,7 +92,7 @@ EOF
 ```
 
 #### Launch
-```
+```Bash
 systemctl daemon-reload
 systemctl enable bzed
 systemctl restart bzed && journalctl -u bzed -f -o cat
@@ -100,7 +100,7 @@ systemctl restart bzed && journalctl -u bzed -f -o cat
 
 ### 3.Создание валидатора и генерация кошелька - Creating a validator and generating a wallet
 #### Wallet 
-```
+```Bash
 # создать кошелек
 bzed keys add <name_wallet> --keyring-backend os
 
@@ -108,7 +108,7 @@ bzed keys add <name_wallet> --keyring-backend os
 bzed keys add <name_wallet> --recover --keyring-backend os
 ```
 #### Creating a validator 
-```
+```Bash
 bzed tx staking create-validator \
 --chain-id beezee-1 \
 --commission-rate 0.05 \
@@ -126,7 +126,7 @@ bzed tx staking create-validator \
 
 ### 4. Удаление - Delete
 #### Deleting
-```
+```Bash
 sudo systemctl stop bzed && \
 sudo systemctl disable bzed && \
 rm /etc/systemd/system/bzed.service && \
