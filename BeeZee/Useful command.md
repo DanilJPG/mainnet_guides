@@ -1,5 +1,5 @@
 #### Useful Commands
-```
+```Bash
 # check the blocks
 bzed status 2>&1 | jq ."SyncInfo"."latest_block_height"
 
@@ -16,7 +16,7 @@ bzed q bank balances <address>
 bzed tendermint show-validator
 ```
 #### For validator
-```
+```Bash
 # collect revards from all validators who were delegated (no commission)
 bzed tx distribution withdraw-all-rewards --from <name_wallet> --fees 5000ubze -y
 
@@ -36,7 +36,7 @@ bzed tx staking unbond <addr_valoper> 1000000ubze --from <name_wallet> --fees 50
 bzed tx bank send <name_wallet> <address> 1000000ubze --fees 5000ubze -y
 ```
 #### Proposal
-```
+```Bash
 # list of proposals
 bzed q gov proposals
 
@@ -47,7 +47,7 @@ bzed q gov proposals --voter <ADDRESS>
 bzed tx gov vote 1 yes --from <name_wallet> --fees 555ubze
 ```
 #### Delete
-```
+```Bash
 systemctl stop bzed && \
 systemctl disable bzed && \
 rm /etc/systemd/system/bzed.service && \
@@ -57,7 +57,7 @@ rm -rf .bze bzed && \
 rm -rf $(which bzed)
 ```
 #### Edit validator 
-```
+```Bash
 BINARY tx staking edit-validator \
   --chain-id "CHAIN_NAME" \
   --moniker "MONIKER" \
