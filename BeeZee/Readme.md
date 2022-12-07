@@ -38,7 +38,7 @@ make install
 
 #### Initializing 
 ```Bash
-bzed init <name_moniker> --chain-id beezee-1
+bzed init <name_moniker> --chain-id beezee-1 \
 bzed config chain-id beezee-1
 ```
 
