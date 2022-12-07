@@ -60,7 +60,7 @@ sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/.b
 seeds="6385d5fb198e3a793498019bb8917973325e5eb7@51.15.138.216:26656"
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.bze/config/config.toml
 ```
-#### Prinning
+#### Prunning `app.toml'
 ```Bash
 pruning="custom" && \
 pruning_keep_recent="100" && \
