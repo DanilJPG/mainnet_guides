@@ -1,4 +1,4 @@
-## cerberus
+## Cerberus
 
 
 [Discord](https://discord.gg/wjMC7J4Q) | [Website](https://docs.cerberus.zone/running-a-validator.html)
