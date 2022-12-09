@@ -11,11 +11,6 @@ Steps | Comments
 [Creating a validator and generating a wallet](https://github.com/DanilJPG/nodes_testnets/blob/main/EmpowerChain/Readme.md#:~:text=3.%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B2%D0%B0%D0%BB%D0%B8%D0%B4%D0%B0%D1%82%D0%BE%D1%80%D0%B0%20%D0%B8%20%D0%B3%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BA%D0%BE%D1%88%D0%B5%D0%BB%D1%8C%D0%BA%D0%B0%20%2D%20Creating%20a%20validator%20and%20generating%20a%20wallet) | Creating and restoring a wallet,Creating your node operator
 [Useful commands](https://github.com/DanilJPG/nodes_testnets/blob/main/EmpowerChain/Useful%20Commands.md) | Here are commands for the validator, for node management and for the wallet
 
-
-**Brief description:** *Decentralize the new (circular) economy so that everyone can get a fair share of the benefits of making the world a cleaner and better place. When you delegate to the Validator, you not only earn your interest rate, you also help clean up the environment*.
-
-![image](https://user-images.githubusercontent.com/57448493/200168721-ca5c593a-0054-4c69-9eeb-14243678f4fc.png)
-
 ***
 
 ### 1.Подготовка сервера - Server Preparation 
