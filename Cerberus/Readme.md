@@ -118,17 +118,17 @@ Go to discord and use the tap
 
 #### Validator
 ```Bash
-empowerd tx staking create-validator \
---chain-id altruistic-1 \
+cerberusd tx staking create-validator \
+--chain-id cerberus-chain-1 \
 --commission-rate 0.05 \
 --commission-max-rate 0.2 \
 --commission-max-change-rate 0.1 \
 --min-self-delegation "1000000" \
---amount 1000000umpwr \
---pubkey $(empowerd tendermint show-validator) \
+--amount 1000000ucrbrus \
+--pubkey $(cerberusd tendermint show-validator) \
 --moniker "<name_moniker>" \
---from $WALLET \
---fees 5000umpwr
+--from <name_wallet> \
+--fees 5000ucrbrus
 ```
 
 ### 4. Удаление - Delete
