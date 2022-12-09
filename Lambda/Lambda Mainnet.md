@@ -5,27 +5,20 @@
 
 Steps | Comments
 --- | --- |
-[Upgrade](https://github.com/DanilJPG/nodes_testnets/blob/main/Lambda%20Network/Lambda%20Mainnet.md#:~:text=Upgrade%20and%20install%20dependencies) | Check the version, if necessary update to the appropriate height blocks
-[installing utilities](https://github.com/DanilJPG/nodes_testnets/blob/main/Lambda%20Network/Lambda%20Mainnet.md#:~:text=Upgrade%20and%20install%20dependencies) | server setup
-[Installing GO](https://github.com/DanilJPG/nodes_testnets/blob/main/Lambda%20Network/Lambda%20Mainnet.md#:~:text=liblz4%2Dtool%20%2Dy-,Installing%20Go,-ver%3D%221.19.1%22%0Acd) | Go language is necessary to work with a binary file and unpack it
-[Copying a repository](https://github.com/DanilJPG/nodes_testnets/blob/main/Lambda%20Network/Lambda%20Mainnet.md#:~:text=Cloning%20a%20repository) | Cloning the GitHub repository of a project
-[Initializing](https://github.com/DanilJPG/nodes_testnets/blob/main/Lambda%20Network/Lambda%20Mainnet.md#:~:text=lambdavm%0Amake%20install-,Initializing,-lambdavm%20init%20%3Cyour_custom_moniker) | To generate configuration files
-[Download genesis](https://github.com/DanilJPG/nodes_testnets/blob/main/Lambda%20Network/Lambda%20Mainnet.md#:~:text=id%20lambda_92000%2D1-,Download%20genesis,-wget%20%2DO%20/root) | The genesis stores the state of the chain
-[Fixing the configure](https://github.com/DanilJPG/nodes_testnets/blob/main/Lambda%20Network/Lambda%20Mainnet.md#:~:text=Correct%20the%20configuration%20file) | Making changes to config.toml
-[Prunning app.toml](https://github.com/DanilJPG/nodes_testnets/blob/main/Lambda%20Network/Lambda%20Mainnet.md#:~:text=config/config.toml-,Prinning,-pruning%3D%22custom%22%20%26%26%20%5C%0Apruning_keep_recent) | To save memory usage
-[Service file](https://github.com/DanilJPG/nodes_testnets/blob/main/Lambda%20Network/Lambda%20Mainnet.md#:~:text=Create%20a%20service%20file) | Creating a service file
-[Launch](https://github.com/DanilJPG/nodes_testnets/blob/main/Lambda%20Network/Lambda%20Mainnet.md#:~:text=user.target%0AEOF-,Launch,-systemctl%20daemon%2Dreload) | Start node 
-[Wallet](https://github.com/DanilJPG/nodes_testnets/blob/main/Lambda%20Network/Lambda%20Mainnet.md#:~:text=auto%20%5C%0A%2D%2Dfees%205000ulamb-,Wallet,-%23%20create%20a%20wallet) | Creating and restoring a wallet
-[Validator](https://github.com/DanilJPG/nodes_testnets/blob/main/Lambda%20Network/Lambda%20Mainnet.md#:~:text=Creating%20a%20validator) | Creating your node operator
-[Useful commands](https://github.com/DanilJPG/nodes_testnets/blob/main/Lambda%20Network/Useful%20commands.md) | Here are commands for the validator, for node management and for the wallet
-[State Sunc]() | Chain synchronization
-#### Upgrade and install dependencies
-```
+[Server Preparation](https://github.com/DanilJPG/mainnet_guides/blob/main/BeeZee/Readme.md#:~:text=Upgrade%20and%20install%20dependencies) | Check the version, if necessary update to the appropriate height blocks,server setup, Go language is necessary to work with a binary file and unpack it
+[Working with a binary file and setting up](https://github.com/DanilJPG/mainnet_guides/blob/main/BeeZee/Readme.md#:~:text=Cloning%20a%20repository) | Cloning the GitHub repository of a project,To generate configuration files,The genesis stores the state of the chain,Making changes to config.toml,Creating a service file
+[Creating a validator and generating a wallet](https://github.com/DanilJPG/mainnet_guides/blob/main/BeeZee/Readme.md#:~:text=3.%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%B2%D0%B0%D0%BB%D0%B8%D0%B4%D0%B0%D1%82%D0%BE%D1%80%D0%B0%20%D0%B8%20%D0%B3%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BA%D0%BE%D1%88%D0%B5%D0%BB%D1%8C%D0%BA%D0%B0%20%2D%20Creating%20a%20validator%20and%20generating%20a%20wallet) | Creating and restoring a wallet,Creating your node operator
+[Useful commands](https://github.com/DanilJPG/mainnet_guides/blob/main/BeeZee/Useful%20command.md) | Here are commands for the validator, for node management and for the wallet
+[State Sunc](https://github.com/DanilJPG/mainnet_guides/blob/main/BeeZee/State%20Sync.md) | Chain synchronization
+
+### 1.Подготовка сервера - Server Preparation 
+#### Обновление и установка зависимостей - Upgrade and install dependencies
+```Shell
 sudo apt update && sudo apt upgrade -y && \
 sudo apt install curl tar wget clang pkg-config libssl-dev jq build-essential bsdmainutils git make ncdu gcc git jq chrony liblz4-tool -y
 ```
 #### Installing Go
-```
+```Bash
 ver="1.19.1" && \
 wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" && \
 sudo rm -rf /usr/local/go && \
@@ -36,6 +29,7 @@ source $HOME/.bash_profile && \
 go version
 ```
 
+### 2.Работа с бинарным файлом и настройка - Working with a binary file and setting up
 #### Cloning a repository 
 ```
 git clone https://github.com/LambdaIM/lambdavm.git
@@ -72,7 +66,7 @@ sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$PEERS\"/" ~/.lambd
 SEEDS=`curl -sL https://raw.githubusercontent.com/LambdaIM/mainnet/main/lambda_92000-1/seeds.txt | awk '{print $1}' | paste -s -d, -`
 sed -i.bak -e "s/^seeds =.*/seeds = \"$SEEDS\"/" ~/.lambdavm/config/config.toml
 ```
-#### Prinning
+#### Prunning `app.toml'
 ```
 pruning="custom" && \
 pruning_keep_recent="100" && \
@@ -108,6 +102,23 @@ systemctl enable lambdavm && \
 systemctl restart lambdavm && journalctl -u lambdavm -f -o cat
 ```
 
+
+### 3.Создание валидатора и генерация кошелька - Creating a validator and generating a wallet
+#### Wallet 
+```
+# create a wallet
+lambdavm keys add $WALLET --keyring-backend os
+
+# restore the wallet (after the command insert seed)
+lambdavm keys add $WALLET --recover --keyring-backend os
+
+# export to metamask(view private key)
+lambdavm keys unsafe-export-eth-key garfield_wallet
+
+# export wallet from metamask
+lambdavm keys unsafe-import-eth-key [account name] [private key]
+```
+
 #### Creating a validator 
 ```
 lambdavm tx staking create-validator \
@@ -122,20 +133,6 @@ lambdavm tx staking create-validator \
 --from garfield_wallet \
 --gas=auto \
 --fees 5000ulamb
-```
-#### Wallet 
-```
-# create a wallet
-lambdavm keys add $WALLET --keyring-backend os
-
-# restore the wallet (after the command insert seed)
-lambdavm keys add $WALLET --recover --keyring-backend os
-
-# export to metamask(view private key)
-lambdavm keys unsafe-export-eth-key garfield_wallet
-
-# export wallet from metamask
-lambdavm keys unsafe-import-eth-key [account name] [private key]
 ```
 
 #### Deleting
