@@ -1,4 +1,4 @@
-```
+```Shell
 sudo systemctl stop lambdavm
 
 cp $HOME/.lambdavm/data/priv_validator_state.json $HOME/.lambdavm/priv_validator_state.json.backup
