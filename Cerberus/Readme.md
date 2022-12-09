@@ -60,8 +60,9 @@ sed -i.bak -e "s/^external_address *=.*/external_address = \"$external_address:2
 
 sed -i.bak -e "s/^minimum-gas-prices *=.*/minimum-gas-prices = \"0.025ucrbrus\"/;" ~/.cerberus/config/app.toml
 
-peers=""
-sed -i 's|^persistent_peers *=.*|persistent_peers = "'$peers'"|' $HOME/.cerberus/config/config.toml
+PEERS=$(curl https://raw.githubusercontent.com/cerberus-zone/cerberus_genesis/main/peers.txt | \
+head -n 32 | sed 's/$/,/' | tr -d '\n' | sed '$ s/.$//'); sed "s/persistent_peers = \"\"/persistent_peers = \"$PEERS\"/" \
+$HOME/.cerberus/config/config.toml -i
 
 seeds=""
 sed -i.bak -e "s/^seeds =.*/seeds = \"$seeds\"/" $HOME/.cerberus/config/config.toml
