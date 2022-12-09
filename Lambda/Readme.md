@@ -135,6 +135,7 @@ lambdavm tx staking create-validator \
 --fees 5000ulamb
 ```
 
+### 4. Удаление - Delete
 #### Deleting
 ```Shell
 systemctl stop lambdavm && \
