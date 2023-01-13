@@ -1,6 +1,6 @@
 ## BeeZee
 
-[Discord](https://discord.gg/VfrfsAbA) | [Website](https://getbze.com/) | [Telegram](https://t.me/BZEdgeOfficial)
+[Discord](https://discord.gg/8ytvrY3v) | [Website](https://getbze.com/) | [Telegram](https://t.me/BZEdgeOfficial)
 --- | --- | ---
 
 Steps | Comments
