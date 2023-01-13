@@ -1,7 +1,7 @@
 ## Cerberus
 
 
-[Discord](https://discord.gg/wjMC7J4Q) | [Website](https://docs.cerberus.zone/running-a-validator.html)
+[Discord](https://discord.gg/2KyWFcZF) | [Website](https://docs.cerberus.zone/running-a-validator.html)
 --- | --- |
 
 Steps | Comments
