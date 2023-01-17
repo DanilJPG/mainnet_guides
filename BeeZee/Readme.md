@@ -32,7 +32,7 @@ rm "go$ver.linux-amd64.tar.gz"
 ```Bash
 git clone https://github.com/bze-alphateam/bze
 cd bze
-git checkout v5.1.1
+git checkout v5.1.2
 make install
 ```
 
