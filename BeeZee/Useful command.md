@@ -34,6 +34,9 @@ bzed tx staking unbond <addr_valoper> 1000000ubze --from <name_wallet> --fees 50
 
 # send coins to another address
 bzed tx bank send <name_wallet> <address> 1000000ubze --fees 5000ubze -y
+
+# unjail
+bzed tx slashing unjail --from <name_wallet> --fees 5000ubze -y
 ```
 #### Proposal
 ```Bash
