@@ -32,7 +32,7 @@ rm "go$ver.linux-amd64.tar.gz"
 ```Bash
 git clone https://github.com/bze-alphateam/bze
 cd bze
-git checkout v5.1.2
+git checkout v6.0.0
 make install
 ```
 
@@ -44,7 +44,7 @@ bzed config chain-id beezee-1
 
 #### Download genesis
 ```Bash
-wget -o $HOME/.bze/config/genesis.json https://raw.githubusercontent.com/bze-alphateam/bze/main/genesis.json
+wget -o $HOME/.bze/config/genesis.json https://github.com/bze-alphateam/bze/blob/main/genesis.json
 ```
 
 #### Correct the configuration file
